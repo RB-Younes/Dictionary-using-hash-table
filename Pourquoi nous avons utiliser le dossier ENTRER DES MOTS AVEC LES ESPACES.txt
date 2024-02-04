@@ -1,0 +1,3 @@
+on  a cree ce dossier a cause d'un probleme servenu lors du scanf (avec des espaces) alrs on a decidé d'utiliser la 
+fonction :  scanf("%[^\n]",mot); qui nous permet de lirre une chaine sans s'arreter au premier espace.
+Mais nous pouvons l'utiliser q'une seul fois dans le meme programme alors nous avons separé chaque fonction dans ce dossier.

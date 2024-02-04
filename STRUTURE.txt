@@ -1,0 +1,78 @@
+ HASH *remplirestruct(FILE *fichier,HASH *H)
+{char caract;int nbr=0;HASH *H1;
+	int i,j;char*tmp=(char*)malloc(sizeof(char));char*tmp2=(char*)malloc(sizeof(char));int code=0;
+   	if(fichier!=NULL)
+    {    	do
+		 {     
+		  
+
+		 	caract=fgetc(fichier);
+		 
+			 
+		 	if (caract=='\n')
+		 	 {  
+			  caract=fgetc(fichier);
+			  if (caract==EOF) {return H;}
+			   while(caract!=':')
+
+		 	 	  {  
+		 	 	     tmp[i]=caract;
+		 	 	     caract=fgetc(fichier);
+		 	 	    
+		 	 	     
+		 	 	     i++;
+		 	 	     tmp=(char*)realloc(tmp,sizeof(char)+1);
+		 	 	  	
+		 	 	  }
+		 	 	  
+		 	 	  tmp[i]='\0';
+
+		 	 	  
+                   
+                   
+                   code=Hashing(tmp);
+                   fseek(fichier,-1,SEEK_CUR);	
+		 	 	  if(H[code].ident==" ")
+		 	 	  { 
+		 	 	    
+		 	 	        H[code].ident=(char*)malloc(sizeof(char)*strlen(tmp));
+		 	 	        strcpy(H[code].ident,tmp);
+		 	 	    
+		 	 	      
+		 	 	         
+		 	            fgets(H[code].Description,7000,fichier);    
+		 	              
+		 	        
+		 	          
+		 	               
+		 	    
+		 	            fseek(fichier,-1,SEEK_CUR);
+		 	                H[code].suiv=NULL;
+		 	                 
+
+		 	          
+		 	 	  }
+		     	else
+			     { H1=(HASH*)malloc(sizeof(HASH));
+				 H1->ident=(char*)malloc(sizeof(char)*strlen(tmp));
+			       strcpy(H1->ident,tmp);
+                  fgets(H1->Description,7000,fichier);    
+		 	              
+		 	        
+		 	         
+		 	               
+		 	    
+		 	        fseek(fichier,-1,SEEK_CUR);
+			       H1->suiv=H[code].suiv;
+			       H[code].suiv=H1;
+			       
+				 }
+				 
+                       }
+			i=0;
+		
+			 
+		 
+		 }while(caract!=EOF);
+
+}
